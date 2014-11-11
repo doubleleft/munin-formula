@@ -11,5 +11,7 @@ munin_node_config:
     - user: root
     - group: root
     - mode: 644
+    - context: 
+      port: {{ munin_node.port }}
     - watch_in:
       - service: munin_node
