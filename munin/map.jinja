@@ -12,6 +12,13 @@
 }, merge=salt['pillar.get']('munin_master:lookup')) %}
 
 {% set munin_node = salt['grains.filter_by']({
+    'default': {
+        'port': 4949,
+    },
+    'ddll.co': {
+        'port': 4950,
+    },
+}, grain='id', default='default', merge=salt['grains.filter_by']({
     'Debian': {
         'package': 'munin-node',
         'service': 'munin-node',
@@ -24,16 +31,7 @@
         'config': '/etc/munin/munin-node.conf',
         'config_src': 'salt://munin/files/munin-node.conf',
     },
-}, merge=salt['pillar.get']('munin_node:lookup')) %}
-
-{% set munin_port = salt['grains.filter_by']({
-    'default': {
-        'port': 4949,
-    },
-    'ddll.co': {
-        'port': 4950,
-    },
-}, grain='id', default='default') %}
+}, merge=salt['pillar.get']('munin_node:lookup'))) %}
 
 {% set net_ssleay = salt['grains.filter_by']({
     'Debian': {
