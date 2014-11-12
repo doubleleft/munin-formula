@@ -5,7 +5,7 @@
 
 {%- for plugin_name, directives in config.iteritems() -%}
 [{{ plugin_name }}]
-    {%- for directive, value in directives.iteritems() &}
+    {%- for directive, value in directives.iteritems() %}
     {{ print_directive(directive, value) }}
     {%- endfor %}
 {% endfor %}
