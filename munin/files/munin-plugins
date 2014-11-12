@@ -1,0 +1,12 @@
+{% set config = pillar.get('munin_plugins_conf', {}) -%}
+#
+# This config file is managed by salt.
+#
+
+{%- for plugin_name, directives in config.iteritems() -%}
+[{{ plugin_name }}]
+    {%- for directive, value in directives.iteritems() &}
+    {{ print_directive(directive, value) }}
+    {%- endfor %}
+{% endfor %}
+
