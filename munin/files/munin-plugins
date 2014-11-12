@@ -3,6 +3,16 @@
 # This config file is managed by salt.
 #
 
+{%- macro print_directive(directive, value) -%}
+    {%- if value is sameas true -%}
+{{ directive }} yes
+    {%- elif value is sameas false %}
+{{ directive }} no
+    {%- else -%}
+{{ directive }} {{ value }}
+    {%- endif -%}
+{%- endmacro %}
+
 {%- for plugin_name, directives in config.iteritems() -%}
 [{{ plugin_name }}]
     {%- for directive, value in directives.iteritems() %}
