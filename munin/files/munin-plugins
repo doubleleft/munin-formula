@@ -13,6 +13,6 @@
 [{{ plugin_name }}]
     {%- for directive, value in directives.iteritems() %}
     {{ print_directive(directive, value) }}
-    {%- endfor %}
+    {% endfor %}
 {% endfor %}
 
